@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Profile Form</h2>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" formControlName="firstName" class="form-control" id="firstName">
+            <div *ngIf="p['firstName'].errors && (p['firstName'].touched || p['firstName'].dirty)" class="text-danger">
+              <div *ngIf="p['firstName'].errors?.['required']">First Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" formControlName="lastName" class="form-control" id="lastName">
+            <div *ngIf="p['lastName'].errors && (p['lastName'].touched || p['lastName'].dirty)" class="text-danger">
+              <div *ngIf="p['lastName'].errors?.['required']">Last Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" formControlName="email" class="form-control" id="email">
+            <div *ngIf="p['email']?.errors && (p['email'].touched || p['email'].dirty)" class="text-danger">
+              <div *ngIf="p['email']?.errors?.['required']">Email is required</div>
+              <div *ngIf="p['email']?.errors?.['email']">Invalid email format</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" formControlName="username" class="form-control" id="username">
+          </div>
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" formControlName="country" class="form-control" id="country">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" formControlName="dob" class="form-control" id="dob">
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select formControlName="gender" class="form-control" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="profileImage">Profile Image:</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control-file" id="profileImage">
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
