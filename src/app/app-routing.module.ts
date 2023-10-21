@@ -43,8 +43,14 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     resolve: {
       resolveData: CourseResolver
-    }
+    },
+      
   },
+
+  {
+    path: 'register-listing',
+    component: RegisterPageComponent,
+  }
 ];
 
 @NgModule({

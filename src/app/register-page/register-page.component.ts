@@ -10,19 +10,19 @@ import { FormGroup, FormBuilder ,Validators} from '@angular/forms';
 export class RegisterPageComponent implements OnInit {
 
   profileForm: FormGroup;
-  selectedFile: File | undefined;
+  selectedFile!: File;
 
   constructor(private formBuilder: FormBuilder) {
     this.profileForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      username: [''],
-      country: [''],
-      phoneNumber: [''],
-      dob: [''],
-      gender: [''],
-      profileImage: ['']
+      username: ['',Validators.required],
+      country: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      dob: ['',Validators.required],
+      gender: ['',Validators.required],
+      profileImage: ['',Validators.required]
     });
   }
 
@@ -31,8 +31,17 @@ export class RegisterPageComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      // Implement logic for form submission here
       console.log(this.profileForm.value);
+      const formData = new FormData();
+      formData.append('name', this.p['firstName'].value);
+      formData.append('lastName', this.p['lastName'].value);
+      formData.append('email', this.p['email'].value);
+      formData.append('username', this.p['username'].value);
+      formData.append('phoneNumber', this.p['phoneNumber'].value);
+      formData.append('dob', this.p['dob'].value);
+      formData.append('gender', this.p['gender'].value);
+      formData.append('profileImage', this.p['profileImage'].value);
+      formData.append('image', this.selectedFile, this.selectedFile.name)
     }
   }
 
@@ -41,7 +50,6 @@ export class RegisterPageComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    // Implement logic to handle file upload
   }
 
 }
